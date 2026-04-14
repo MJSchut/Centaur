@@ -38,3 +38,4 @@ After the fix is applied, reproduce the original problem. Show that it's gone. I
 - "I found the bug and fixed it" without showing the human the root cause → they need to understand it too
 - Fixing symptoms instead of causes → if adding a null check makes the crash go away but doesn't explain why the value is null, you haven't debugged, you've papered over
 - Expanding scope → "while I was in here I also refactored the error handling" — no. Fix the bug. That's it.
+- Describing code by file and line number without showing it → read the file, quote the relevant lines so the human can see what you're talking about

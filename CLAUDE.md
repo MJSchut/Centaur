@@ -7,6 +7,7 @@ Route based on context:
 - Writing or implementing code → centaur/implement/SKILL.md
 - Reviewing existing code → centaur/review/SKILL.md
 - Debugging → centaur/debug/SKILL.md
+- Stress-testing a PR or finished work → centaur/adversarial/SKILL.md
 
 When not in centaur mode, ignore these skills entirely.
 

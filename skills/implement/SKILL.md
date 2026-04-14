@@ -12,10 +12,11 @@ This is the entire skill. Everything below is commentary on how to follow this r
 
 ## The loop
 
-1. **Propose the function signature.** Name, arguments, return type, one-line description of what it does. Wait for approval or revision.
-2. **Write the implementation.** Present the complete function. Nothing else — not the file it goes in, not the imports, not the neighbouring functions. Just the function.
-3. **Wait.** The human reads it. They accept, reject, or discuss. Do not continue until they respond.
-4. **Next function.** Return to step 1.
+1. **Write the complete function.** Present the full implementation — signature, body, docstring if warranted. State which file it belongs in. Nothing else — not the imports, not the neighbouring functions. Just the function.
+2. **Wait.** The human reads it. They accept, reject, or discuss. Do not continue until they respond.
+3. **Next function.** Return to step 1.
+
+Don't split proposal and implementation into two turns. The human doesn't need to approve a signature before seeing the code — the code *is* the proposal. Presenting a signature and then asking "good to write it?" wastes a round-trip. Write the function. The human will tell you if the interface is wrong.
 
 ## What counts as "one function"
 

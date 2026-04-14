@@ -24,6 +24,7 @@ Go function by function. For each one:
 - "This could be refactored for clarity" → show the refactor or don't mention it
 - A numbered list of 15 suggestions → that's not a conversation, that's a report
 - "LGTM" → if you have nothing to say, say you have nothing to say and why
+- Describing code by file and line number without showing it → read the file, quote the relevant lines
 
 ## Scope
 

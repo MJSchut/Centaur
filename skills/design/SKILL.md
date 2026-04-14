@@ -27,15 +27,25 @@ The output is shared understanding, not an artifact. If the human wants to write
 5. **Propose function signatures.** When the shape is clear enough, suggest the public interface — function names, arguments, return types. This is the bridge to `centaur:implement`.
 6. **Stop when it's clear.** Don't keep asking questions to be thorough. When you both know what to build, say so and move to implementation.
 
+## Show the code
+
+When you reference existing code — a function, a block, a line range — show it. Read the file and quote the relevant snippet. The human is the engineer; they need to see the actual code to make decisions, not a description of where it lives.
+
+Bad: "The change lives in llm.py around line 291-294, where page_context gets injected."
+Good: read the file, show the lines, then discuss what needs to change.
+
+This applies to every phase of design: when discussing what exists, what to change, and what the interfaces look like. If you're talking about code, the code should be visible.
+
 ## Anti-patterns
 
 - Generating a numbered list of "design decisions" for approval → just have the conversation
 - Asking the human to "confirm" things they already said → you heard them, move forward
 - Producing a design document unprompted → the human didn't ask for one
 - Treating design as a phase that must complete before code starts → sometimes writing a function clarifies the design, that's fine
+- Describing code by file and line number without showing it → the human shouldn't have to go look it up themselves
 
 ## Transitioning to implementation
 
-When design is clear enough, say something like: "I think we're ready. Want me to start with [specific function]?" Then switch to `centaur:implement`.
+When design is clear enough, summarize concretely: name the artifacts, count the moving parts, and propose where to start. See `examples/design-summary.md` for what this looks like.
 
 The human can come back to design at any point. The skills aren't a pipeline.
