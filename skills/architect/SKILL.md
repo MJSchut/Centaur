@@ -189,6 +189,17 @@ From the JSON, produce a human-readable report. Present it to the human section 
 2. **Architectural observations** — grouped by type. Present as a summary, expand on any the human wants to discuss.
 3. **Prioritized action** — "If you were going to refactor one thing, start here: {description}."
 
+## Visual Graph (stretch goal)
+
+After generating the deep check JSON report, offer to generate a visual graph:
+
+> "I've saved the report to `.centaur/architect-report.json`. Want me to open a visual graph of the results in your browser?"
+
+If yes:
+1. Copy `skills/architect/graph-template.html` to `.centaur/architect-graph.html`
+2. Tell the human to open it in their browser and load the JSON file
+3. Explain the color coding: blue = clone, orange = structural, red = semantic
+
 ## Anti-patterns
 
 - Running the deep check without being asked → the auto-check is automatic, the deep check is not

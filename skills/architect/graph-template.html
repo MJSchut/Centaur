@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Centaur Architect — Code Similarity Graph</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    body { margin: 0; font-family: system-ui, sans-serif; background: #1a1a2e; color: #eee; }
+    svg { width: 100vw; height: 100vh; }
+    .node circle { stroke: #fff; stroke-width: 1.5px; cursor: pointer; }
+    .node text { font-size: 11px; fill: #ccc; pointer-events: none; }
+    .link { stroke-opacity: 0.6; }
+    .link.clone { stroke: #4a90d9; }
+    .link.structural { stroke: #e6a23c; }
+    .link.semantic { stroke: #f56c6c; }
+    #tooltip {
+      position: absolute; background: #16213e; border: 1px solid #444;
+      padding: 12px; border-radius: 6px; max-width: 500px; display: none;
+      font-size: 13px; white-space: pre-wrap;
+    }
+    #controls { position: absolute; top: 16px; left: 16px; }
+    #controls input { margin-right: 8px; }
+    #legend { position: absolute; bottom: 16px; left: 16px; font-size: 12px; }
+    .legend-item { display: flex; align-items: center; margin-bottom: 4px; }
+    .legend-swatch { width: 24px; height: 4px; margin-right: 8px; border-radius: 2px; }
+  </style>
+</head>
+<body>
+  <div id="controls">
+    <label>Load report: <input type="file" id="fileInput" accept=".json"></label>
+  </div>
+  <div id="legend">
+    <div class="legend-item"><div class="legend-swatch" style="background:#4a90d9"></div>Clone match</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#e6a23c"></div>Structural match</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#f56c6c"></div>Semantic match</div>
+  </div>
+  <div id="tooltip"></div>
+  <svg></svg>
+  <script>
+    const svg = d3.select("svg");
+    const tooltip = d3.select("#tooltip");
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    document.getElementById("fileInput").addEventListener("change", (e) => {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const report = JSON.parse(event.target.result);
+        renderGraph(report);
+      };
+      reader.readAsText(e.target.files[0]);
+    });
+
+    function renderGraph(report) {
+      svg.selectAll("*").remove();
+      const g = svg.append("g");
+
+      // Build nodes from cluster members
+      const nodeMap = new Map();
+      const links = [];
+
+      report.clusters.forEach(cluster => {
+        cluster.members.forEach(member => {
+          const id = `${member.file}:${member.function}`;
+          if (!nodeMap.has(id)) {
+            nodeMap.set(id, {
+              id,
+              file: member.file,
+              function: member.function,
+              startLine: member.startLine,
+              endLine: member.endLine,
+              cluster: cluster.id,
+              size: member.endLine - member.startLine
+            });
+          }
+        });
+        cluster.matches.forEach(match => {
+          links.push({
+            source: match.from,
+            target: match.to,
+            layer: match.layer,
+            confidence: match.confidence
+          });
+        });
+      });
+
+      const nodes = Array.from(nodeMap.values());
+
+      // Color clusters
+      const clusterIds = [...new Set(nodes.map(n => n.cluster))];
+      const color = d3.scaleOrdinal(d3.schemeTableau10).domain(clusterIds);
+
+      const simulation = d3.forceSimulation(nodes)
+        .force("link", d3.forceLink(links).id(d => d.id).distance(120))
+        .force("charge", d3.forceManyBody().strength(-200))
+        .force("center", d3.forceCenter(width / 2, height / 2))
+        .force("collision", d3.forceCollide().radius(d => Math.sqrt(d.size) * 2 + 10));
+
+      const link = g.append("g").selectAll("line")
+        .data(links).join("line")
+        .attr("class", d => `link ${d.layer}`)
+        .attr("stroke-width", d => d.confidence / 30);
+
+      const node = g.append("g").selectAll("g")
+        .data(nodes).join("g").attr("class", "node")
+        .call(d3.drag()
+          .on("start", (e, d) => { if (!e.active) simulation.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+          .on("drag", (e, d) => { d.fx = e.x; d.fy = e.y; })
+          .on("end", (e, d) => { if (!e.active) simulation.alphaTarget(0); d.fx = null; d.fy = null; })
+        );
+
+      node.append("circle")
+        .attr("r", d => Math.max(6, Math.sqrt(d.size) * 1.5))
+        .attr("fill", d => color(d.cluster));
+
+      node.append("text")
+        .attr("dx", 12).attr("dy", 4)
+        .text(d => d.function);
+
+      node.on("mouseover", (e, d) => {
+        tooltip.style("display", "block")
+          .html(`<strong>${d.function}</strong>\n${d.file}:${d.startLine}-${d.endLine}\nLines: ${d.size}`);
+      }).on("mousemove", (e) => {
+        tooltip.style("left", (e.pageX + 16) + "px").style("top", (e.pageY - 16) + "px");
+      }).on("mouseout", () => tooltip.style("display", "none"));
+
+      simulation.on("tick", () => {
+        link.attr("x1", d => d.source.x).attr("y1", d => d.source.y)
+          .attr("x2", d => d.target.x).attr("y2", d => d.target.y);
+        node.attr("transform", d => `translate(${d.x},${d.y})`);
+      });
+
+      // Zoom
+      svg.call(d3.zoom().on("zoom", (e) => g.attr("transform", e.transform)));
+    }
+  </script>
+</body>
+</html>
