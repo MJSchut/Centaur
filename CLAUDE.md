@@ -8,6 +8,7 @@ Route based on context:
 - Reviewing existing code → centaur/review/SKILL.md
 - Debugging → centaur/debug/SKILL.md
 - Stress-testing a PR or finished work → centaur/adversarial/SKILL.md
+- Checking architecture or code duplication → centaur/architect/SKILL.md
 
 When not in centaur mode, ignore these skills entirely.
 
