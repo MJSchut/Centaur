@@ -18,6 +18,20 @@ This is the entire skill. Everything below is commentary on how to follow this r
 
 Don't split proposal and implementation into two turns. The human doesn't need to approve a signature before seeing the code — the code *is* the proposal. Presenting a signature and then asking "good to write it?" wastes a round-trip. Write the function. The human will tell you if the interface is wrong.
 
+## Architectural auto-check
+
+Before presenting each function for review, run the auto-check from `centaur:architect` (see `skills/architect/SKILL.md` — Auto-Check Mode).
+
+The full loop becomes:
+
+1. **Write the complete function.** Same as before.
+2. **Run the auto-check.** Follow the auto-check steps in the architect skill. This checks for similar existing code using jscpd, ast-grep, and (when ambiguous) LLM judgment.
+3. **Present for review.** If the auto-check found nothing, present the function normally. If it found similar patterns above the confidence threshold, append the findings summary and let the human choose: (a) investigate, (b) continue, (c) skip.
+4. **Wait.** The human reads and responds.
+5. **Next function.** Return to step 1.
+
+The auto-check should not slow down the loop noticeably — layers 1-2 are shell commands that complete in seconds. If tools are not installed, the check degrades gracefully (see architect skill for details).
+
 ## What counts as "one function"
 
 - A single function or method body
