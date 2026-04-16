@@ -24,11 +24,12 @@ The name comes from centaur chess — human + computer beats both pure human and
 
 | Skill | When | What happens |
 |-------|------|-------------|
-| `design` | Starting something new | Collaborative architecture discussion. No spec documents. |
-| `implement` | Writing code | One function at a time. Full implementation. Wait for review. |
-| `review` | Looking at existing code | Walk through function by function. Flag concerns. Ask questions. |
-| `debug` | Something is broken | Reproduce, narrow, fix, verify. Narrate your thinking. |
-| `adversarial` | Stress-testing finished work | Fresh-context review that tries to break the code. Surfaces refactor opportunities as future tickets. |
+| `centaur-design` | Starting something new | Collaborative architecture discussion. No spec documents. |
+| `centaur-implement` | Writing code | One function at a time. Full implementation. Wait for review. |
+| `centaur-review` | Looking at existing code | Walk through function by function. Flag concerns. Ask questions. |
+| `centaur-debug` | Something is broken | Reproduce, narrow, fix, verify. Narrate your thinking. |
+| `centaur-adversarial` | Stress-testing finished work | Fresh-context review that tries to break the code. Surfaces refactor opportunities as future tickets. |
+| `centaur-architect` | Checking architecture | Detect code duplication and structural issues. Auto-checks during implement, or full scan on demand. |
 
 ## Installation
 
@@ -36,9 +37,9 @@ The name comes from centaur chess — human + computer beats both pure human and
 curl -fsSL https://raw.githubusercontent.com/MJSchut/Centaur/main/install.sh | bash
 ```
 
-Installs to `~/.claude/skills/centaur/` — available in every Claude Code session across all your projects.
+Installs to `~/.claude/skills/` — each skill gets its own directory (`centaur`, `centaur-design`, `centaur-implement`, etc.). Available in every Claude Code session across all your projects.
 
-For per-project use, copy into your project's `.claude/skills/centaur/` directory instead.
+For per-project use, copy the `skills/` directories into your project's `.claude/skills/` directory instead.
 
 ## Usage
 

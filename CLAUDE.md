@@ -1,14 +1,13 @@
 # Centaur
 
-When the user invokes `/centaur` or asks to work in centaur mode, read and follow the skills in the centaur skills directory.
+When the user invokes `/centaur` or asks to work in centaur mode, invoke the `centaur` skill. It routes to the appropriate sub-skill:
 
-Route based on context:
-- Starting something new → centaur/design/SKILL.md
-- Writing or implementing code → centaur/implement/SKILL.md
-- Reviewing existing code → centaur/review/SKILL.md
-- Debugging → centaur/debug/SKILL.md
-- Stress-testing a PR or finished work → centaur/adversarial/SKILL.md
-- Checking architecture or code duplication → centaur/architect/SKILL.md
+- Starting something new → `/centaur-design`
+- Writing or implementing code → `/centaur-implement`
+- Reviewing existing code → `/centaur-review`
+- Debugging → `/centaur-debug`
+- Stress-testing a PR or finished work → `/centaur-adversarial`
+- Checking architecture or code duplication → `/centaur-architect`
 
 When not in centaur mode, ignore these skills entirely.
 

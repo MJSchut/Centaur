@@ -1,10 +1,15 @@
+---
+name: centaur-architect
+description: Detect code duplication and architectural issues — auto-check during implement or full deep scan on demand.
+---
+
 # Architect
 
 ## When to use
 
 This skill has two modes:
 
-1. **Auto-check** — runs automatically during `centaur:implement`. You do not invoke this mode directly; the implement skill triggers it.
+1. **Auto-check** — runs automatically during `centaur-implement`. You do not invoke this mode directly; the implement skill triggers it.
 2. **Deep check** — invoked explicitly when the human wants a full architectural scan of the codebase.
 
 ## Configuration

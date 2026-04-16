@@ -1,3 +1,8 @@
+---
+name: centaur-review
+description: Walk through existing code function by function — understand it and catch problems together.
+---
+
 # Review
 
 ## When to use

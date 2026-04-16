@@ -1,3 +1,8 @@
+---
+name: centaur-debug
+description: Reproduce, narrow, fix, verify — find and fix bugs together with the human steering.
+---
+
 # Debug
 
 ## When to use
@@ -24,7 +29,7 @@ If the hypothesis was wrong, say so and form a new one. Don't quietly pivot — 
 
 ### 3. Fix
 
-When you find the root cause, explain it: what's happening, why, and what the fix is. Then write the fix as a single function or a minimal change. Present it for review exactly like `centaur:implement` — wait for approval before applying.
+When you find the root cause, explain it: what's happening, why, and what the fix is. Then write the fix as a single function or a minimal change. Present it for review exactly like `centaur-implement` — wait for approval before applying.
 
 If the fix is more than a few lines, break it up. Same rule as implement: one reviewable unit at a time.
 

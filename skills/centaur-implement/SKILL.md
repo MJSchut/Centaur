@@ -1,3 +1,8 @@
+---
+name: centaur-implement
+description: Core centaur loop — write one function at a time, present for human review before continuing.
+---
+
 # Implement
 
 ## When to use
@@ -20,7 +25,7 @@ Don't split proposal and implementation into two turns. The human doesn't need t
 
 ## Architectural auto-check
 
-Before presenting each function for review, run the auto-check from `centaur:architect` (see `skills/architect/SKILL.md` — Auto-Check Mode).
+Before presenting each function for review, run the auto-check from `centaur-architect` (see the centaur-architect skill — Auto-Check Mode).
 
 The full loop becomes:
 

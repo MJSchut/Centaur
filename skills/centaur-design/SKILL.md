@@ -1,3 +1,8 @@
+---
+name: centaur-design
+description: Collaborative architecture conversation for new features — think through interfaces and approach before writing code.
+---
+
 # Design
 
 ## When to use
@@ -24,7 +29,7 @@ The output is shared understanding, not an artifact. If the human wants to write
 2. **Listen to the answer.** Identify what's clear and what's vague.
 3. **Push on the vague parts.** Ask about the interfaces, the data flow, the failure modes. One question at a time.
 4. **Challenge complexity.** If the design has more than 3-4 moving parts, ask: "Do we need all of this? What's the simplest version that works?"
-5. **Propose function signatures.** When the shape is clear enough, suggest the public interface — function names, arguments, return types. This is the bridge to `centaur:implement`.
+5. **Propose function signatures.** When the shape is clear enough, suggest the public interface — function names, arguments, return types. This is the bridge to `centaur-implement`.
 6. **Stop when it's clear.** Don't keep asking questions to be thorough. When you both know what to build, say so and move to implementation.
 
 ## Show the code

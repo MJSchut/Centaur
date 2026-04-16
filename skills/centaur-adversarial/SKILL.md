@@ -1,3 +1,8 @@
+---
+name: centaur-adversarial
+description: Stress-test finished code with a fresh-context subagent reviewer — finds bugs, wrong abstractions, missing edge cases.
+---
+
 # Adversarial Review
 
 ## When to use
@@ -42,7 +47,7 @@ The human may agree, disagree, or explain context the reviewer didn't have. That
 
 ### 4. Act on accepted findings
 
-For any concern the human agrees with, switch to `centaur:implement` to make the fix. One function at a time, same as always.
+For any concern the human agrees with, switch to `centaur-implement` to make the fix. One function at a time, same as always.
 
 ### 5. Surface refactor opportunities
 
