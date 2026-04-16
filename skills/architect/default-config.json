@@ -1,0 +1,25 @@
+{
+  "autoCheck": {
+    "enabled": true,
+    "confidenceThreshold": 70,
+    "maxResultsShown": 3
+  },
+  "deepCheck": {
+    "minTokens": 50,
+    "minLines": 5,
+    "includeSemanticLayer": true,
+    "reportFormat": "text"
+  },
+  "languages": {
+    "python": { "enabled": true },
+    "javascript": { "enabled": true },
+    "typescript": { "enabled": true },
+    "java": { "enabled": true },
+    "go": { "enabled": true },
+    "csharp": { "enabled": true }
+  },
+  "tools": {
+    "jscpd": { "path": "jscpd" },
+    "astGrep": { "path": "sg" }
+  }
+}
